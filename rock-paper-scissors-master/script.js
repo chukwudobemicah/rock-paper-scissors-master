@@ -33,10 +33,11 @@ cancel.addEventListener('click', function () {
   rulesContainer.classList.add('scale-down');
   overlay.classList.add('hidden');
   if (window.matchMedia('max-width:700px').matches) {
-    setTimeout(() => rulesContainer.classList.add('hidden'), 250);
+    setTimeout(() => rulesContainer.classList.add('hidden'), 300);
   } else {
     rulesContainer.classList.add('hidden');
   }
+  rulesContainer.classList.add('hidden');
 });
 
 overlay.addEventListener('click', function () {
@@ -122,18 +123,20 @@ pickOne.forEach(el => {
       }
 
       // update notif
-      const randomNotNum = Math.trunc(Math.random() * 7) + 1;
+      const randomNotNum = Math.trunc(Math.random() * 8) + 1;
       const winNotification = [
+        '',
         `don't get too comfortable`,
         'keep going',
         'i see a soldier in you👮‍♂️',
         `you're almost there`,
-        `You,ve earned my compliments👍`,
+        `You've earned my compliments👍`,
         'Hurray🥳',
         `Feels good`,
         'That was good!👏',
       ];
       const losesNotification = [
+        '',
         'are you even trying?',
         'i can do better in my sleep',
         `You're losing scores`,
@@ -144,19 +147,18 @@ pickOne.forEach(el => {
         `I take back my compliments👎`,
       ];
       const drawNotification = [
-        `you,re playing with a bot🙄`,
+        '',
+        `you're playing with a bot🙄`,
         'do better!',
-        'better than a loss',
+        'better than a loss🤷‍♀️',
         'at least its a draw i guess🤷‍♀️',
         'not too bad',
         'keep going!',
         `Drawing is not good enough`,
         'pick paper next!',
       ];
-      console.log(randomNotNum);
       if (wDL.textContent === 'you win🎉😁') {
         notification.textContent = winNotification[randomNotNum];
-        console.log((notification.textContent = winNotification[randomNotNum]));
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
         setTimeout(() => {

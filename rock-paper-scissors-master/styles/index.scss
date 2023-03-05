@@ -356,11 +356,11 @@ section:nth-child(2) {
   margin-top: 5rem;
 }
 .scale-up {
-  animation: scale-up 0.3s ease forwards;
+  animation: scale-up 0.3s ease;
   transition: animation 0.3s ease;
 }
 .scale-down {
-  animation: scale-down 0.3s ease forwards;
+  animation: scale-down 0.3s ease;
   transition: animation 0.3s ease;
 }
 .hidden {
