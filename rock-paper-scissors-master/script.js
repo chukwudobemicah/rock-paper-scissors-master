@@ -18,15 +18,12 @@ const rpsContainerPicked = document.querySelector('.rps__container-picked');
 const rpsContainerPick = document.querySelector('.rps__container-pick');
 const rpsSection = document.querySelector('.rps-section');
 // show rules
-// rules-
 rulesBtn.addEventListener('click', function () {
   rulesContainer.classList.toggle('hidden');
   rulesContainer.classList.remove('scale-down');
   rulesContainer.classList.toggle('scale-up');
   overlay.classList.toggle('hidden');
 });
-
-// rules-
 
 // remove rules
 cancel.addEventListener('click', function () {
@@ -116,24 +113,22 @@ pickOne.forEach(el => {
     setTimeout(() => {
       rpsSection.style.height = '15rem';
       results.classList.remove('add-margin');
-      // rules-
+
       wDL.classList.remove('hidden');
-      // rules-
+
       playAgain.classList.remove('hidden');
       const housePick = document.querySelector('.house-pick');
-      // rules-
+
       rpsLogic();
       +score.textContent;
       secondChoice.insertAdjacentHTML('beforeend', secondMarkUp);
 
-      // checks if the user wins
-      // rules-
+      // update score if the user wins
       if (wDL.textContent === 'you win🎉🥳') {
         score.textContent = +score.textContent + 1;
       }
 
-      // checks if the user loses
-      // rules-
+      // update score if the user loses
       if (wDL.textContent === 'you lose😢' && score.textContent !== '0') {
         score.textContent = +score.textContent - 1;
       }
@@ -142,8 +137,6 @@ pickOne.forEach(el => {
     // compare results
   });
 });
-
-// rules-
 
 playAgain.addEventListener('click', function () {
   results.classList.add('add-margin');

@@ -75,7 +75,7 @@ button {
 
 body {
   background: radial-gradient(circle at 100% 0%, #1f3756, #141539);
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   font-family: 'Barlow', sans-serif;
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -213,6 +213,8 @@ header > div > div p:nth-child(2) {
 }
 
 .rps__container .rps p {
+  -webkit-box-shadow: inset 10px 10px 10px #0000005a;
+          box-shadow: inset 10px 10px 10px #0000005a;
   width: 7rem;
   height: 7rem;
   background-color: #fff;
@@ -244,6 +246,34 @@ header > div > div p:nth-child(2) {
 
 .rps__container .rps:nth-child(3) {
   grid-column: span 2;
+}
+
+.rps__container-picked #first-choice div p {
+  -webkit-box-shadow: inset 10px 10px 10px #0000005a;
+          box-shadow: inset 10px 10px 10px #0000005a;
+}
+
+.rps__container-picked #second-choice div p {
+  -webkit-box-shadow: inset 10px 10px 10px #0000005a;
+          box-shadow: inset 10px 10px 10px #0000005a;
+}
+
+.rps__container-pick div div {
+  border-radius: 50%;
+  -webkit-box-shadow: 10px 10px 10px #00000031;
+          box-shadow: 10px 10px 10px #00000031;
+}
+
+.rps__container-pick div div p {
+  -webkit-box-shadow: 10px 10px 10px #00000031;
+          box-shadow: 10px 10px 10px #00000031;
+}
+
+.rps__container-pick #third-choice p {
+  -webkit-box-shadow: 10px 10px 10px #00000031;
+          box-shadow: 10px 10px 10px #00000031;
+  -webkit-box-shadow: inset 10px 10px 10px #0000005a;
+          box-shadow: inset 10px 10px 10px #0000005a;
 }
 
 .rules {
