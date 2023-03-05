@@ -189,6 +189,12 @@ header > div > div p:nth-child(2) {
   color: #3b4363;
 }
 
+.rps__container-pick {
+  background: url(../images/bg-triangle.svg) no-repeat;
+  background-position: 50% 50%;
+  background-size: 60% 60%;
+}
+
 .rps__container {
   display: -ms-grid;
   display: grid;
@@ -420,7 +426,7 @@ section:nth-child(2) {
   width: fit-content;
   color: #fff;
   position: absolute;
-  top: 23%;
+  top: 20%;
   right: 0;
   border: 0.1875rem solid #606e85;
   padding: 0 0.3125rem;
@@ -431,6 +437,15 @@ section:nth-child(2) {
 .translate-right {
   -webkit-transform: translateX(200%);
           transform: translateX(200%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.translate-left {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;

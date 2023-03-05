@@ -152,7 +152,11 @@ header {
     }
   }
 }
-
+.rps__container-pick {
+  background: url(../images/bg-triangle.svg) no-repeat;
+  background-position: 50% 50%;
+  background-size: 60% 60%;
+}
 .rps__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -332,7 +336,7 @@ section:nth-child(2) {
   width: fit-content;
   color: $White;
   position: absolute;
-  top: 23%;
+  top: 20%;
   right: 0;
   border: toRem(3px) solid $HeaderOutline;
   padding: 0 toRem(5px);
@@ -341,6 +345,10 @@ section:nth-child(2) {
 }
 .translate-right {
   transform: translateX(200%);
+  transition: transform 0.3s ease;
+}
+.translate-left {
+  transform: translateX(0);
   transition: transform 0.3s ease;
 }
 .add-margin {
