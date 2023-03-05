@@ -7,8 +7,6 @@ const rock = document.querySelector('.rps__container-rock');
 const pickOne = document.querySelectorAll('.pick');
 const wDL = document.querySelector('.wdl');
 const playAgain = document.querySelector('.play-again');
-const userPick = document.querySelector('.user-pick');
-const housePick = document.querySelector('.house-pick');
 const firstChoice = document.querySelector('#first-choice');
 const secondChoice = document.querySelector('#second-choice');
 const thirdChoice = document.querySelector('#third-choice');
@@ -25,7 +23,7 @@ rulesBtn.addEventListener('click', function () {
   rulesContainer.classList.toggle('hidden');
   rulesContainer.classList.remove('scale-down');
   rulesContainer.classList.toggle('scale-up');
-  overlay.classList.remove('hidden');
+  overlay.classList.toggle('hidden');
 });
 
 // rules-

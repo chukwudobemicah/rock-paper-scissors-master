@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <!-- rules -->
   <div class="rules-container hidden">
     <p>rules</p>
     <img class="rules-container--img" src="/images/image-rules.svg" alt="">
@@ -27,29 +28,26 @@
     </div>
   </header>
   <main>
-    <!-- rules -->
     <!-- pick html mark up -->
     <section class="rps-section">
       <article class="rps__container rps__container-pick add-margin">
-        <div class="first-choice-container">
+        <div class="first-choice-container" style="--order: 1">
           <div data-value="paper" data-num="1" class="rps__container-paper rps pick first-pick">
             <p><img src="/images/icon-paper.svg" alt="paper"></p>
             <div class="user-pick hidden">You Picked</div>
           </div>
         </div>
-        <div class="second-choice-container pick second-pick">
+        <div class="second-choice-container pick second-pick" style="--order: 2">
           <div data-value="scissors" data-num="2" class="rps__container-scissors rps">
             <p><img src="/images/icon-scissors.svg" alt="scissors"></p>
             <div class="house-pick hidden">The house Picked</div>
           </div>
         </div>
-        <div id="third-choice" data-value="rock" data-num="3" class="rps__container-rock rps pick">
+        <div id="third-choice" data-value="rock" data-num="3" class="rps__container-rock rps pick" style="--order: 3">
           <p><img src="/images/icon-rock.svg" alt="rock"></p>
         </div>
       </article>
-
-      <!-- winning html mark up -->
-
+      <!-- picked html mark up -->
       <article class="rps__container rps__container-picked ">
         <div id="first-choice" class="rps">
           <!-- <div data-value="paper" class="rps__container-paper ">
@@ -63,30 +61,8 @@
             <div>The house Picked</div>
           </div>
         </div> -->
-
       </article>
-      <!-- <section class="results">
-        <p class="wdl hidden">you win</p>
-        <button class="play-again hidden"> Play Again</button>
-        <div class="rules">
-          <p>rules</p>
-        </div>
-      </section> -->
     </section>
-    <!-- <div data-value="rock" class="rps__container-rock rps">
-      <p><img src="/images/icon-rock.svg" alt="rock"></p>
-    </div>
-    </div> -->
-
-
-    <!-- 
-    The House Picked
-
-    You Win
-    You Lose
-
-    -->
-
     <section class="results add-margin">
       <p class="wdl hidden">you win</p>
       <button class="play-again hidden"> Play Again</button>
@@ -96,7 +72,6 @@
     </section>
   </main>
   <script src="script.js" type="module"></script>
-  <script src="rpslogic.js" type="module"></script>
 </body>
 
 </html>

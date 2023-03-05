@@ -72,14 +72,12 @@ button {
 
 // styles
 body {
-  // background-color: rgb(35, 35, 88);
   background: radial-gradient(
     circle at 100% 0%,
     hsl(214, 47%, 23%),
     hsl(237, 49%, 15%)
   );
   height: 100vh;
-  // min-height: fit-content;
   width: 100vw;
   font-family: 'Barlow', sans-serif;
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -98,8 +96,7 @@ header {
   width: 100vw;
   padding-top: 3rem;
   margin: 0px auto;
-  // display: flex;
-  // flex-direction: column;
+  display: flex;
   & > div {
     width: 80%;
     margin: 0 auto;
@@ -113,7 +110,6 @@ header {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // align-items: center;
       & > img {
         height: 75%;
         max-height: 75%;
@@ -157,17 +153,13 @@ header {
 .rps__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  // grid-template-rows: 1fr 1fr;
   width: fit-content;
-  // max-width: 75%;
   margin: 0 auto;
   align-items: center;
   justify-items: center;
-  // margin-top: 5rem;
   gap: 2rem;
   text-align: center;
   .rps {
-    // background-color: $DarkText;
     div {
       color: $White;
       text-transform: uppercase;
@@ -227,9 +219,6 @@ section:nth-child(2) {
   flex-direction: column;
   align-items: center;
 }
-// .rps__container .rps p:nth-child(1)) {
-//   border-color: $Paper;
-// }
 .results {
   display: flex;
   flex-direction: column;
@@ -280,8 +269,6 @@ section:nth-child(2) {
 
 .rps-section {
   position: relative;
-  // height: 20rem;
-  // width: toRem(256px);
   height: toRem(256px);
   .rps__container {
     position: absolute;
@@ -289,16 +276,10 @@ section:nth-child(2) {
     top: 50%;
     transform: translate(-50%, -50%);
   }
-  // .rps__container-picked
 }
 .add-margin {
   margin-top: 5rem;
 }
-
-// .scale-down {
-//   transform: scale(0.3);
-//   transition: transform 0.5s ease;
-// }
 .scale-up {
   animation: scale-up 0.3s ease forwards;
   transition: animation 0.3s ease;
@@ -310,8 +291,22 @@ section:nth-child(2) {
 .hidden {
   display: none;
 }
-
 // scale animation
+.rps {
+  animation: scale-rps 0.3s ease;
+  transition: animation 0.3s ease;
+  animation-delay: calc(var(--order) * 200ms);
+}
+@keyframes scale-rps {
+  from {
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+  }
+  to {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+}
 @keyframes scale-up {
   from {
     transform: scale(0.3);
@@ -331,14 +326,16 @@ section:nth-child(2) {
 }
 
 @media screen and (min-width: toRem(700px)) {
-  // body {
-  //   position: relative;
-  // }
   header {
     width: clamp(40rem, 100vw, 40rem);
   }
+  .rps,
+  .cancel,
+  .play-again,
+  .rules {
+    cursor: pointer;
+  }
   .rules-container {
-    // position: absolute;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content;
     max-width: 20rem;

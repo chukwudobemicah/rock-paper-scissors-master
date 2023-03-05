@@ -95,6 +95,9 @@ header {
   width: 100vw;
   padding-top: 3rem;
   margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 header > div {
@@ -382,6 +385,55 @@ section:nth-child(2) {
   display: none;
 }
 
+.rps {
+  -webkit-animation: scale-rps 0.3s ease;
+          animation: scale-rps 0.3s ease;
+  -webkit-transition: -webkit-animation 0.3s ease;
+  transition: -webkit-animation 0.3s ease;
+  transition: animation 0.3s ease;
+  transition: animation 0.3s ease, -webkit-animation 0.3s ease;
+  -webkit-animation-delay: calc(var(--order) * 200ms);
+          animation-delay: calc(var(--order) * 200ms);
+}
+
+@-webkit-keyframes scale-rps {
+  from {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  }
+}
+
+@keyframes scale-rps {
+  from {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  }
+}
+
 @-webkit-keyframes scale-up {
   from {
     -webkit-transform: scale(0.3);
@@ -431,6 +483,12 @@ section:nth-child(2) {
 @media screen and (min-width: 43.75rem) {
   header {
     width: clamp(40rem, 100vw, 40rem);
+  }
+  .rps,
+  .cancel,
+  .play-again,
+  .rules {
+    cursor: pointer;
   }
   .rules-container {
     -ms-grid-columns: 1fr 1fr;
