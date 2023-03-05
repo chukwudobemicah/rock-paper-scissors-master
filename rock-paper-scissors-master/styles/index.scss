@@ -203,15 +203,25 @@ header {
 .rps__container-picked {
   #first-choice {
     div {
-      p {
-        box-shadow: inset 10px 10px 10px #0000005a;
+      div:nth-child(1) {
+        height: fit-content;
+        box-shadow: 10px 10px 10px #0000005a;
+        border-radius: 50%;
+        p {
+          box-shadow: inset 10px 10px 10px #0000005a;
+        }
       }
     }
   }
   #second-choice {
     div {
-      p {
-        box-shadow: inset 10px 10px 10px #0000005a;
+      div:nth-child(1) {
+        height: fit-content;
+        box-shadow: 10px 10px 10px #0000005a;
+        border-radius: 50%;
+        p {
+          box-shadow: inset 10px 10px 10px #0000005a;
+        }
       }
     }
   }
@@ -228,8 +238,9 @@ header {
     }
   }
   #third-choice {
+    box-shadow: 10px 10px 10px #00000031;
+    border-radius: 50%;
     p {
-      box-shadow: 10px 10px 10px #00000031;
       box-shadow: inset 10px 10px 10px #0000005a;
     }
   }

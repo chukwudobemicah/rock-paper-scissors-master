@@ -248,12 +248,30 @@ header > div > div p:nth-child(2) {
   grid-column: span 2;
 }
 
-.rps__container-picked #first-choice div p {
+.rps__container-picked #first-choice div div:nth-child(1) {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -webkit-box-shadow: 10px 10px 10px #0000005a;
+          box-shadow: 10px 10px 10px #0000005a;
+  border-radius: 50%;
+}
+
+.rps__container-picked #first-choice div div:nth-child(1) p {
   -webkit-box-shadow: inset 10px 10px 10px #0000005a;
           box-shadow: inset 10px 10px 10px #0000005a;
 }
 
-.rps__container-picked #second-choice div p {
+.rps__container-picked #second-choice div div:nth-child(1) {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -webkit-box-shadow: 10px 10px 10px #0000005a;
+          box-shadow: 10px 10px 10px #0000005a;
+  border-radius: 50%;
+}
+
+.rps__container-picked #second-choice div div:nth-child(1) p {
   -webkit-box-shadow: inset 10px 10px 10px #0000005a;
           box-shadow: inset 10px 10px 10px #0000005a;
 }
@@ -269,9 +287,13 @@ header > div > div p:nth-child(2) {
           box-shadow: 10px 10px 10px #00000031;
 }
 
-.rps__container-pick #third-choice p {
+.rps__container-pick #third-choice {
   -webkit-box-shadow: 10px 10px 10px #00000031;
           box-shadow: 10px 10px 10px #00000031;
+  border-radius: 50%;
+}
+
+.rps__container-pick #third-choice p {
   -webkit-box-shadow: inset 10px 10px 10px #0000005a;
           box-shadow: inset 10px 10px 10px #0000005a;
 }

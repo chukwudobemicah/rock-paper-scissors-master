@@ -57,7 +57,7 @@ pickOne.forEach(el => {
     rpsContainerPick.classList.add('hidden');
     rpsContainerPicked.classList.remove('hidden');
     const firstMarkUp = `<div data-value="${userValue}" class="rps__container-${userValue} ">
-    <p><img src="/images/icon-${userValue}.svg" alt="${userValue}"></p>
+    <div><p><img src="/images/icon-${userValue}.svg" alt="${userValue}"></p></div>
     <div>You Picked</div>
   </div> `;
     firstChoice.innerHTML = '';
@@ -76,7 +76,7 @@ pickOne.forEach(el => {
 
     // input computer value
     const secondMarkUp = ` <div data-value="${ComputerValue}" class="rps__container-${ComputerValue} rps">
-        <p><img src="/images/icon-${ComputerValue}.svg" alt="${ComputerValue}"></p><div class="house-pick">House Picked</div>
+    <div><p><img src="/images/icon-${ComputerValue}.svg" alt="${ComputerValue}"></p></div><div class="house-pick">House Picked</div>
         </div>`;
 
     const rpsLogic = function (userVal, compVal) {
