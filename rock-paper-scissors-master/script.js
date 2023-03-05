@@ -79,33 +79,9 @@ pickOne.forEach(el => {
     <div><p><img src="/images/icon-${ComputerValue}.svg" alt="${ComputerValue}"></p></div><div class="house-pick">House Picked</div>
         </div>`;
 
-    const rpsLogic = function (userVal, compVal) {
-      if ((userValue === 'paper') & (ComputerValue === 'scissors')) {
-        wDL.textContent = 'you lose😢';
-      }
-      if ((userValue === 'paper') & (ComputerValue === 'rock')) {
-        wDL.textContent = 'you win🎉🥳';
-      }
-      if ((userValue === 'paper') & (ComputerValue === 'paper')) {
-        wDL.textContent = 'draw⚒⚔';
-      }
-      if ((userValue === 'rock') & (ComputerValue === 'scissors')) {
-        wDL.textContent = 'you win🎉🥳';
-      }
-      if ((userValue === 'rock') & (ComputerValue === 'paper')) {
-        wDL.textContent = 'you lose😢';
-      }
-      if ((userValue === 'rock') & (ComputerValue === 'rock')) {
-        wDL.textContent = 'draw⚒⚔';
-      }
-      if ((userValue === 'scissors') & (ComputerValue === 'rock')) {
-        wDL.textContent = 'you lose😢';
-      }
-      if ((userValue === 'scissors') & (ComputerValue === 'paper')) {
-        wDL.textContent = 'you win🎉🥳';
-      }
-      if ((userValue === 'scissors') & (ComputerValue === 'scissors')) {
-        wDL.textContent = 'draw⚒⚔';
+    const rpsLogic = function (userPick, compPick, result) {
+      if ((userValue === userPick) & (ComputerValue === compPick)) {
+        wDL.textContent = result;
       }
     };
 
@@ -119,12 +95,23 @@ pickOne.forEach(el => {
       playAgain.classList.remove('hidden');
       const housePick = document.querySelector('.house-pick');
 
-      rpsLogic();
+      // paper
+      rpsLogic('paper', 'rock', 'you win🎉😁');
+      rpsLogic('paper', 'scissors', 'you lose😢');
+      rpsLogic('paper', 'paper', 'draw⚒⚔');
+      // scissors
+      rpsLogic('scissors', 'paper', 'you win🎉😁');
+      rpsLogic('scissors', 'rock', 'you lose😢');
+      rpsLogic('scissors', 'scissors', 'draw⚒⚔');
+      // rock
+      rpsLogic('rock', 'scissors', 'you win🎉😁');
+      rpsLogic('rock', 'paper', 'you lose😢');
+      rpsLogic('rock', 'rock', 'draw⚒⚔');
       +score.textContent;
       secondChoice.insertAdjacentHTML('beforeend', secondMarkUp);
 
       // update score if the user wins
-      if (wDL.textContent === 'you win🎉🥳') {
+      if (wDL.textContent === 'you win🎉😁') {
         score.textContent = +score.textContent + 1;
       }
 
