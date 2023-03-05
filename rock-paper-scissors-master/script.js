@@ -17,6 +17,8 @@ const rps = document.querySelectorAll('.rps');
 const rpsContainerPicked = document.querySelector('.rps__container-picked');
 const rpsContainerPick = document.querySelector('.rps__container-pick');
 const rpsSection = document.querySelector('.rps-section');
+const notification = document.querySelector('.notification ');
+
 // show rules
 rulesBtn.addEventListener('click', function () {
   rulesContainer.classList.toggle('hidden');
@@ -93,7 +95,6 @@ pickOne.forEach(el => {
       wDL.classList.remove('hidden');
 
       playAgain.classList.remove('hidden');
-      const housePick = document.querySelector('.house-pick');
 
       // paper
       rpsLogic('paper', 'rock', 'you win🎉😁');
@@ -118,6 +119,68 @@ pickOne.forEach(el => {
       // update score if the user loses
       if (wDL.textContent === 'you lose😢' && score.textContent !== '0') {
         score.textContent = +score.textContent - 1;
+      }
+
+      // update notif
+      const randomNotNum = Math.trunc(Math.random() * 7) + 1;
+      const winNotification = [
+        `don't get too comfortable`,
+        'keep going',
+        'i see a soldier in you👮‍♂️',
+        `you're almost there`,
+        `You,ve earned my compliments👍`,
+        'Hurray🥳',
+        `Feels good`,
+        'That was good!👏',
+      ];
+      const losesNotification = [
+        'are you even trying?',
+        'i can do better in my sleep',
+        `You're losing scores`,
+        `i'm sure you can do better than that`,
+        'just look at the score board',
+        `You're boring me`,
+        `just quit the game!`,
+        `I take back my compliments👎`,
+      ];
+      const drawNotification = [
+        `you,re playing with a bot🙄`,
+        'do better!',
+        'better than a loss',
+        'at least its a draw i guess🤷‍♀️',
+        'not too bad',
+        'keep going!',
+        `Drawing is not good enough`,
+        'pick paper next!',
+      ];
+      console.log(randomNotNum);
+      if (wDL.textContent === 'you win🎉😁') {
+        notification.textContent = winNotification[randomNotNum];
+        console.log((notification.textContent = winNotification[randomNotNum]));
+        notification.classList.remove('hidden');
+        notification.classList.remove('translate-right');
+        setTimeout(() => {
+          notification.classList.add('translate-right');
+          setTimeout(() => notification.classList.add('hidden'), 20);
+        }, 1000);
+      }
+      if (wDL.textContent === 'you lose😢') {
+        notification.textContent = losesNotification[randomNotNum];
+        notification.classList.remove('hidden');
+        notification.classList.remove('translate-right');
+        setTimeout(() => {
+          notification.classList.add('translate-right');
+          setTimeout(() => notification.classList.add('hidden'), 20);
+        }, 1000);
+      }
+      if (wDL.textContent === 'draw⚒⚔') {
+        notification.textContent = drawNotification[randomNotNum];
+        notification.classList.remove('hidden');
+        notification.classList.remove('translate-right');
+        setTimeout(() => {
+          notification.classList.add('translate-right');
+          setTimeout(() => notification.classList.add('hidden'), 20);
+        }, 1000);
       }
     }, 1000);
 
