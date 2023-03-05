@@ -426,12 +426,13 @@ section:nth-child(2) {
   width: fit-content;
   color: #fff;
   position: absolute;
-  top: 20%;
+  top: 5%;
   right: 0;
   border: 0.1875rem solid #606e85;
   padding: 0 0.3125rem;
   text-transform: capitalize;
   z-index: 30;
+  overflow: hidden;
 }
 
 .translate-right {

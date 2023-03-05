@@ -336,12 +336,13 @@ section:nth-child(2) {
   width: fit-content;
   color: $White;
   position: absolute;
-  top: 20%;
+  top: 5%;
   right: 0;
   border: toRem(3px) solid $HeaderOutline;
   padding: 0 toRem(5px);
   text-transform: capitalize;
   z-index: 30;
+  overflow: hidden;
 }
 .translate-right {
   transform: translateX(200%);
