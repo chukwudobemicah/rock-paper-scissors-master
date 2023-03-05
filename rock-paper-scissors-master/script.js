@@ -98,27 +98,27 @@ pickOne.forEach(el => {
       playAgain.classList.remove('hidden');
 
       // paper
-      rpsLogic('paper', 'rock', 'you win🎉😁');
-      rpsLogic('paper', 'scissors', 'you lose😢');
-      rpsLogic('paper', 'paper', 'draw⚒⚔');
+      rpsLogic('paper', 'rock', 'you win');
+      rpsLogic('paper', 'scissors', 'you lose');
+      rpsLogic('paper', 'paper', 'draw⚒');
       // scissors
-      rpsLogic('scissors', 'paper', 'you win🎉😁');
-      rpsLogic('scissors', 'rock', 'you lose😢');
-      rpsLogic('scissors', 'scissors', 'draw⚒⚔');
+      rpsLogic('scissors', 'paper', 'you win');
+      rpsLogic('scissors', 'rock', 'you lose');
+      rpsLogic('scissors', 'scissors', 'draw⚒');
       // rock
-      rpsLogic('rock', 'scissors', 'you win🎉😁');
-      rpsLogic('rock', 'paper', 'you lose😢');
-      rpsLogic('rock', 'rock', 'draw⚒⚔');
+      rpsLogic('rock', 'scissors', 'you win');
+      rpsLogic('rock', 'paper', 'you lose');
+      rpsLogic('rock', 'rock', 'draw⚒');
       +score.textContent;
       secondChoice.insertAdjacentHTML('beforeend', secondMarkUp);
 
       // update score if the user wins
-      if (wDL.textContent === 'you win🎉😁') {
+      if (wDL.textContent === 'you win') {
         score.textContent = +score.textContent + 1;
       }
 
       // update score if the user loses
-      if (wDL.textContent === 'you lose😢' && score.textContent !== '0') {
+      if (wDL.textContent === 'you lose' && score.textContent !== '0') {
         score.textContent = +score.textContent - 1;
       }
 
@@ -157,7 +157,7 @@ pickOne.forEach(el => {
         `Drawing is not good enough`,
         'pick paper next!',
       ];
-      if (wDL.textContent === 'you win🎉😁') {
+      if (wDL.textContent === 'you win') {
         notification.textContent = winNotification[randomNotNum];
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
@@ -166,7 +166,7 @@ pickOne.forEach(el => {
           setTimeout(() => notification.classList.add('hidden'), 20);
         }, 1000);
       }
-      if (wDL.textContent === 'you lose😢') {
+      if (wDL.textContent === 'you lose') {
         notification.textContent = losesNotification[randomNotNum];
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
@@ -175,7 +175,7 @@ pickOne.forEach(el => {
           setTimeout(() => notification.classList.add('hidden'), 20);
         }, 1000);
       }
-      if (wDL.textContent === 'draw⚒⚔') {
+      if (wDL.textContent === 'draw⚒') {
         notification.textContent = drawNotification[randomNotNum];
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
