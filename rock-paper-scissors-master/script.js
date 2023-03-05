@@ -19,12 +19,30 @@ const rpsContainerPick = document.querySelector('.rps__container-pick');
 const rpsSection = document.querySelector('.rps-section');
 const notification = document.querySelector('.notification ');
 
+let audioLose = new Audio();
+audioLose.src = './audio/evil-laugh-49831.mp3';
+audioLose.loop = false;
+audioLose.volume = 1;
+let audioSuccess = new Audio();
+audioSuccess.src = './audio/success-1-6297.mp3';
+audioSuccess.loop = false;
+audioSuccess.volume = 1;
+let audioDraw = new Audio();
+audioDraw.src = './audio/stingers-001-6294.mp3';
+audioDraw.loop = false;
+audioDraw.volume = 1;
+let audioClick = new Audio();
+audioClick.src = './audio/interface-124464.mp3';
+audioClick.loop = false;
+audioClick.volume = 1;
+// audioClick.duration = 10;
 // show rules
 rulesBtn.addEventListener('click', function () {
   rulesContainer.classList.toggle('hidden');
   rulesContainer.classList.remove('scale-down');
   rulesContainer.classList.toggle('scale-up');
   overlay.classList.toggle('hidden');
+  audioLose.play();
 });
 
 // remove rules
@@ -56,6 +74,7 @@ rps.forEach(el => {
 // when you click on a rps
 pickOne.forEach(el => {
   el.addEventListener('click', function () {
+    audioClick.play();
     // input user value
     rpsContainerPick.classList.add('hidden');
     rpsContainerPicked.classList.remove('hidden');
@@ -129,15 +148,17 @@ pickOne.forEach(el => {
         `don't get too comfortable`,
         'keep going',
         'i see a soldier in you👮‍♂️',
-        `you're almost there`,
+        `take your crown👑`,
         `You've earned my compliments👍`,
         'Hurray🥳',
+        'you deserve this 🏆',
         `Feels good`,
         'That was good!👏',
       ];
       const losesNotification = [
         '',
         'are you even trying?',
+        'I laugh!',
         'i can do better in my sleep',
         `You're losing scores`,
         `i'm sure you can do better than that`,
@@ -150,6 +171,7 @@ pickOne.forEach(el => {
         '',
         `you're playing with a bot🙄`,
         'do better!',
+        'we both knew it was going to be a draw',
         'better than a loss🤷‍♀️',
         'at least its a draw i guess🤷‍♀️',
         'not too bad',
@@ -158,6 +180,7 @@ pickOne.forEach(el => {
         'pick paper next!',
       ];
       if (wDL.textContent === 'you win') {
+        audioSuccess.play();
         notification.textContent = winNotification[randomNotNum];
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
@@ -167,6 +190,7 @@ pickOne.forEach(el => {
         }, 1000);
       }
       if (wDL.textContent === 'you lose') {
+        audioLose.play();
         notification.textContent = losesNotification[randomNotNum];
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
@@ -176,6 +200,7 @@ pickOne.forEach(el => {
         }, 1000);
       }
       if (wDL.textContent === 'draw⚒') {
+        audioDraw.play();
         notification.textContent = drawNotification[randomNotNum];
         notification.classList.remove('hidden');
         notification.classList.remove('translate-right');
@@ -191,6 +216,14 @@ pickOne.forEach(el => {
 });
 
 playAgain.addEventListener('click', function () {
+  audioClick.pause();
+  audioClick.currentTime = 0;
+  audioSuccess.pause();
+  audioSuccess.currentTime = 0;
+  audioLose.pause();
+  audioLose.currentTime = 0;
+  audioDraw.pause();
+  audioDraw.currentTime = 0;
   results.classList.add('add-margin');
   rpsContainerPick.classList.remove('hidden');
   rpsContainerPicked.classList.add('hidden');
