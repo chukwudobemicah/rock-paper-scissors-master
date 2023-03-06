@@ -1,4 +1,4 @@
-const rulesBtn = document.querySelector('.rules');
+const rulesBtn = document.querySelector('.rules p');
 const rulesContainer = document.querySelector('.rules-container');
 const cancel = document.querySelector('.cancel');
 const paper = document.querySelector('.rps__container-paper');
@@ -106,11 +106,10 @@ rps.forEach(el => {
 
 const popUpNotification = function () {
   notification.classList.remove('hidden');
-  notification.classList.remove('translate-right');
+  // notification.classList.add('translate-left');
   setTimeout(() => {
-    notification.classList.add('translate-right');
-    setTimeout(() => notification.classList.add('hidden'), 20);
-  }, 1000);
+    notification.classList.add('hidden');
+  }, 1100);
 };
 // when you click on a rps
 pickOne.forEach(el => {
