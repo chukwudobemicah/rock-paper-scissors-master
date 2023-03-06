@@ -42,7 +42,7 @@ newHighScoreAudio.loop = false;
 newHighScoreAudio.volume = 1;
 
 // update score from LS activities
-let getScoreLs = JSON.parse(localStorage.getItem('userScore'));
+let getScoreLs = JSON.parse(localStorage.getItem('userScore')) || [0];
 let newScore;
 // update highScore
 let highScoreVal;
