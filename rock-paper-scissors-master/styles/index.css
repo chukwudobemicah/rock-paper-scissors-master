@@ -344,7 +344,7 @@ section:nth-child(2) {
           align-items: center;
 }
 
-.highscore-container {
+.high-score__container {
   text-transform: capitalize;
   display: block;
   position: absolute;

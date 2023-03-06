@@ -18,7 +18,7 @@ const rpsContainerPicked = document.querySelector('.rps__container-picked');
 const rpsContainerPick = document.querySelector('.rps__container-pick');
 const rpsSection = document.querySelector('.rps-section');
 const notification = document.querySelector('.notification ');
-const highScore = document.querySelector('.highscore ');
+const highScore = document.querySelector('.high-score');
 
 let audioLose = new Audio();
 audioLose.src = './audio/evil-laugh-49831.mp3';
@@ -234,7 +234,7 @@ pickOne.forEach(el => {
         'I laugh!',
         'i can do better in my sleep',
         `You're losing scores`,
-        `i'm sure you can do better than that`,
+        `i laugh!`,
         'just look at the score board',
         `You're boring me`,
         `just quit the game!`,
@@ -248,7 +248,7 @@ pickOne.forEach(el => {
         'better than a loss🤷‍♀️',
         'at least its a draw i guess🤷‍♀️',
         'not too bad',
-        'keep going!',
+        `You can't beat your high score this way!`,
         `A draw is not good enough`,
         'pick paper next!',
       ];
