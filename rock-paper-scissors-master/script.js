@@ -256,9 +256,11 @@ pickOne.forEach(el => {
         pauseClickAudio();
         pauseLoseAudio();
         pauseDrawAudio();
-        audioSuccess.play();
-        notification.textContent = winNotification[randomNotNum];
-        popUpNotification();
+        if (+highScoreVal > +newScore) {
+          audioSuccess.play();
+          notification.textContent = winNotification[randomNotNum];
+          popUpNotification();
+        }
       }
       if (wDL.textContent === 'you lose') {
         pauseClickAudio();
