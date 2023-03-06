@@ -153,7 +153,7 @@ pickOne.forEach(el => {
 
     secondChoice.innerHTML = '';
     setTimeout(() => {
-      // js styles
+      // extra js styles
       rpsSection.style.height = '15rem';
       results.classList.remove('add-margin');
       wDL.classList.remove('hidden');
@@ -256,9 +256,11 @@ pickOne.forEach(el => {
         pauseClickAudio();
         pauseLoseAudio();
         pauseDrawAudio();
-        audioSuccess.play();
-        notification.textContent = winNotification[randomNotNum];
-        popUpNotification();
+        if (+highScoreVal > +newScore) {
+          audioSuccess.play();
+          notification.textContent = winNotification[randomNotNum];
+          popUpNotification();
+        }
       }
       if (wDL.textContent === 'you lose') {
         pauseClickAudio();
