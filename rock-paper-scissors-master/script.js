@@ -18,6 +18,7 @@ const rpsContainerPicked = document.querySelector('.rps__container-picked');
 const rpsContainerPick = document.querySelector('.rps__container-pick');
 const rpsSection = document.querySelector('.rps-section');
 const notification = document.querySelector('.notification ');
+const highScore = document.querySelector('.highscore ');
 
 let audioLose = new Audio();
 audioLose.src = './audio/evil-laugh-49831.mp3';
@@ -35,14 +36,45 @@ let audioClick = new Audio();
 audioClick.src = './audio/interface-124464.mp3';
 audioClick.loop = false;
 audioClick.volume = 1;
-// audioClick.duration = 10;
+let newHighScoreAudio = new Audio();
+newHighScoreAudio.src = './audio/success-fanfare-trumpets-6185.mp3';
+newHighScoreAudio.loop = false;
+newHighScoreAudio.volume = 1;
+
+// update score from LS activities
+let getScoreLs = JSON.parse(localStorage.getItem('userScore'));
+let newScore;
+// update highScore
+let highScoreVal;
+highScore.textContent = getScoreLs[0];
+
+// pause audio
+const pauseSuccessAudio = function () {
+  audioSuccess.pause();
+  audioSuccess.currentTime = 0;
+};
+const pauseClickAudio = function () {
+  audioClick.pause();
+  audioClick.currentTime = 0;
+};
+const pauseLoseAudio = function () {
+  audioLose.pause();
+  audioLose.currentTime = 0;
+};
+const pauseDrawAudio = function () {
+  audioDraw.pause();
+  audioDraw.currentTime = 0;
+};
+const pauseNewHighScoreAudio = function () {
+  newHighScoreAudio.pause();
+  newHighScoreAudio.currentTime = 0;
+};
 // show rules
 rulesBtn.addEventListener('click', function () {
   rulesContainer.classList.toggle('hidden');
   rulesContainer.classList.remove('scale-down');
   rulesContainer.classList.toggle('scale-up');
   overlay.classList.toggle('hidden');
-  audioLose.play();
 });
 
 // remove rules
@@ -50,6 +82,7 @@ cancel.addEventListener('click', function () {
   rulesContainer.classList.remove('scale-up');
   rulesContainer.classList.add('scale-down');
   overlay.classList.add('hidden');
+  // extra js styles
   if (window.matchMedia('max-width:700px').matches) {
     setTimeout(() => rulesContainer.classList.add('hidden'), 300);
   } else {
@@ -71,9 +104,20 @@ rps.forEach(el => {
   });
 });
 
+const popUpNotification = function () {
+  notification.classList.remove('hidden');
+  notification.classList.remove('translate-right');
+  setTimeout(() => {
+    notification.classList.add('translate-right');
+    setTimeout(() => notification.classList.add('hidden'), 20);
+  }, 1000);
+};
 // when you click on a rps
 pickOne.forEach(el => {
   el.addEventListener('click', function () {
+    pauseSuccessAudio();
+    pauseLoseAudio();
+    pauseDrawAudio();
     audioClick.play();
     // input user value
     rpsContainerPick.classList.add('hidden');
@@ -109,13 +153,13 @@ pickOne.forEach(el => {
 
     secondChoice.innerHTML = '';
     setTimeout(() => {
+      // js styles
       rpsSection.style.height = '15rem';
       results.classList.remove('add-margin');
-
       wDL.classList.remove('hidden');
-
       playAgain.classList.remove('hidden');
 
+      // Rps logic
       // paper
       rpsLogic('paper', 'rock', 'you win');
       rpsLogic('paper', 'scissors', 'you lose');
@@ -130,18 +174,47 @@ pickOne.forEach(el => {
       rpsLogic('rock', 'rock', 'draw⚒');
       +score.textContent;
       secondChoice.insertAdjacentHTML('beforeend', secondMarkUp);
-
       // update score if the user wins
-      if (wDL.textContent === 'you win') {
-        score.textContent = +score.textContent + 1;
+      if (score.textContent == '0') {
+        // to convert 0 string to number
+        score.textContent = 0;
+        newScore = score.textContent;
       }
-
+      if (wDL.textContent === 'you win') {
+        newScore = score.textContent = +score.textContent + 1;
+      }
       // update score if the user loses
       if (wDL.textContent === 'you lose' && score.textContent !== '0') {
-        score.textContent = +score.textContent - 1;
+        newScore = score.textContent = +score.textContent - 1;
+      }
+      if (wDL.textContent === 'draw⚒') {
+        newScore = score.textContent = +score.textContent;
       }
 
-      // update notif
+      let updateScore;
+      if (+newScore > +highScoreVal) {
+        pauseClickAudio();
+        pauseDrawAudio();
+        pauseLoseAudio();
+        pauseSuccessAudio();
+        notification.textContent = 'New high score!🏆';
+        popUpNotification();
+        newHighScoreAudio.play();
+        updateScore = [newScore];
+      } else {
+        highScoreVal = getScoreLs[0];
+        updateScore = [highScoreVal];
+      }
+      const setScoreLs = localStorage.setItem(
+        'userScore',
+        JSON.stringify(updateScore)
+      );
+      // immediately get highScore from local S when user beats their hight score
+      getScoreLs = JSON.parse(localStorage.getItem('userScore'));
+      highScoreVal = getScoreLs[0];
+      highScore.textContent = highScoreVal;
+
+      // update notification
       const randomNotNum = Math.trunc(Math.random() * 8) + 1;
       const winNotification = [
         '',
@@ -176,54 +249,43 @@ pickOne.forEach(el => {
         'at least its a draw i guess🤷‍♀️',
         'not too bad',
         'keep going!',
-        `Drawing is not good enough`,
+        `A draw is not good enough`,
         'pick paper next!',
       ];
       if (wDL.textContent === 'you win') {
+        pauseClickAudio();
+        pauseLoseAudio();
+        pauseDrawAudio();
         audioSuccess.play();
         notification.textContent = winNotification[randomNotNum];
-        notification.classList.remove('hidden');
-        notification.classList.remove('translate-right');
-        setTimeout(() => {
-          notification.classList.add('translate-right');
-          setTimeout(() => notification.classList.add('hidden'), 20);
-        }, 1000);
+        popUpNotification();
       }
       if (wDL.textContent === 'you lose') {
+        pauseClickAudio();
+        pauseSuccessAudio();
+        pauseDrawAudio();
         audioLose.play();
         notification.textContent = losesNotification[randomNotNum];
-        notification.classList.remove('hidden');
-        notification.classList.remove('translate-right');
-        setTimeout(() => {
-          notification.classList.add('translate-right');
-          setTimeout(() => notification.classList.add('hidden'), 20);
-        }, 1000);
+        popUpNotification();
       }
       if (wDL.textContent === 'draw⚒') {
+        pauseClickAudio();
+        pauseLoseAudio();
+        pauseSuccessAudio();
         audioDraw.play();
         notification.textContent = drawNotification[randomNotNum];
-        notification.classList.remove('hidden');
-        notification.classList.remove('translate-right');
-        setTimeout(() => {
-          notification.classList.add('translate-right');
-          setTimeout(() => notification.classList.add('hidden'), 20);
-        }, 1000);
+        popUpNotification();
       }
     }, 1000);
-
-    // compare results
   });
 });
 
 playAgain.addEventListener('click', function () {
-  audioClick.pause();
-  audioClick.currentTime = 0;
-  audioSuccess.pause();
-  audioSuccess.currentTime = 0;
-  audioLose.pause();
-  audioLose.currentTime = 0;
-  audioDraw.pause();
-  audioDraw.currentTime = 0;
+  pauseClickAudio();
+  pauseLoseAudio();
+  pauseDrawAudio();
+  pauseSuccessAudio();
+  pauseNewHighScoreAudio();
   results.classList.add('add-margin');
   rpsContainerPick.classList.remove('hidden');
   rpsContainerPicked.classList.add('hidden');

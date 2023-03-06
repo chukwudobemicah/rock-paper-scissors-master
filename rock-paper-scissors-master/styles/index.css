@@ -103,6 +103,7 @@ header {
 }
 
 header > div {
+  position: relative;
   width: 80%;
   margin: 0 auto;
   display: -ms-grid;
@@ -343,6 +344,19 @@ section:nth-child(2) {
           align-items: center;
 }
 
+.highscore-container {
+  text-transform: capitalize;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  color: #fff;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .results {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -458,8 +472,8 @@ section:nth-child(2) {
 }
 
 .scale-up {
-  -webkit-animation: scale-up 0.3s ease forwards;
-          animation: scale-up 0.3s ease forwards;
+  -webkit-animation: scale-up 0.3s ease;
+          animation: scale-up 0.3s ease;
   -webkit-transition: -webkit-animation 0.3s ease;
   transition: -webkit-animation 0.3s ease;
   transition: animation 0.3s ease;
@@ -467,8 +481,8 @@ section:nth-child(2) {
 }
 
 .scale-down {
-  -webkit-animation: scale-down 0.3s ease forwards;
-          animation: scale-down 0.3s ease forwards;
+  -webkit-animation: scale-down 0.3s ease;
+          animation: scale-down 0.3s ease;
   -webkit-transition: -webkit-animation 0.3s ease;
   transition: -webkit-animation 0.3s ease;
   transition: animation 0.3s ease;
