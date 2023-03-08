@@ -20,6 +20,9 @@ const rpsSection = document.querySelector('.rps-section');
 const notification = document.querySelector('.notification ');
 const highScore = document.querySelector('.high-score');
 
+// rps: rock, paper, scissors.
+// wDl : win, draw, lose.
+
 let audioLose = new Audio();
 audioLose.src = './audio/evil-laugh-49831.mp3';
 audioLose.loop = false;
@@ -41,6 +44,12 @@ newHighScoreAudio.src = './audio/success-fanfare-trumpets-6185.mp3';
 newHighScoreAudio.loop = false;
 newHighScoreAudio.volume = 1;
 
+// pause audio
+const pauseAudio = function (type) {
+  type.pause();
+  type.currentTime = 0;
+};
+
 // update score from LS activities
 let getScoreLs = JSON.parse(localStorage.getItem('userScore')) || [0];
 let newScore;
@@ -48,27 +57,6 @@ let newScore;
 let highScoreVal;
 highScore.textContent = getScoreLs[0];
 
-// pause audio
-const pauseSuccessAudio = function () {
-  audioSuccess.pause();
-  audioSuccess.currentTime = 0;
-};
-const pauseClickAudio = function () {
-  audioClick.pause();
-  audioClick.currentTime = 0;
-};
-const pauseLoseAudio = function () {
-  audioLose.pause();
-  audioLose.currentTime = 0;
-};
-const pauseDrawAudio = function () {
-  audioDraw.pause();
-  audioDraw.currentTime = 0;
-};
-const pauseNewHighScoreAudio = function () {
-  newHighScoreAudio.pause();
-  newHighScoreAudio.currentTime = 0;
-};
 // show rules
 rulesBtn.addEventListener('click', function () {
   rulesContainer.classList.toggle('hidden');
@@ -106,7 +94,6 @@ rps.forEach(el => {
 
 const popUpNotification = function () {
   notification.classList.remove('hidden');
-  // notification.classList.add('translate-left');
   setTimeout(() => {
     notification.classList.add('hidden');
   }, 1100);
@@ -114,9 +101,9 @@ const popUpNotification = function () {
 // when you click on a rps
 pickOne.forEach(el => {
   el.addEventListener('click', function () {
-    pauseSuccessAudio();
-    pauseLoseAudio();
-    pauseDrawAudio();
+    pauseAudio(audioSuccess);
+    pauseAudio(audioLose);
+    pauseAudio(audioDraw);
     audioClick.play();
     // input user value
     rpsContainerPick.classList.add('hidden');
@@ -129,23 +116,23 @@ pickOne.forEach(el => {
     firstChoice.insertAdjacentHTML('beforeend', firstMarkUp);
     thirdChoice.classList.add('hidden');
 
-    let ComputerValue;
+    let computerValue;
     const randomNum = Math.trunc(Math.random() * 3) + 1;
     if (randomNum === 1) {
-      ComputerValue = 'paper';
+      computerValue = 'paper';
     } else if (randomNum === 2) {
-      ComputerValue = 'scissors';
+      computerValue = 'scissors';
     } else {
-      ComputerValue = 'rock';
+      computerValue = 'rock';
     }
 
     // input computer value
-    const secondMarkUp = ` <div data-value="${ComputerValue}" class="rps__container-${ComputerValue} rps">
-    <div><p><img src="/images/icon-${ComputerValue}.svg" alt="${ComputerValue}"></p></div><div class="house-pick">House Picked</div>
+    const secondMarkUp = ` <div data-value="${computerValue}" class="rps__container-${computerValue} rps">
+    <div><p><img src="/images/icon-${computerValue}.svg" alt="${computerValue}"></p></div><div class="house-pick">House Picked</div>
         </div>`;
 
     const rpsLogic = function (userPick, compPick, result) {
-      if ((userValue === userPick) & (ComputerValue === compPick)) {
+      if ((userValue === userPick) & (computerValue === compPick)) {
         wDL.textContent = result;
       }
     };
@@ -192,10 +179,10 @@ pickOne.forEach(el => {
 
       let updateScore;
       if (+newScore > +highScoreVal) {
-        pauseClickAudio();
-        pauseDrawAudio();
-        pauseLoseAudio();
-        pauseSuccessAudio();
+        pauseAudio(audioSuccess);
+        pauseAudio(audioLose);
+        pauseAudio(audioDraw);
+        pauseAudio(audioClick);
         notification.textContent = 'New high score!🏆';
         popUpNotification();
         newHighScoreAudio.play();
@@ -252,9 +239,9 @@ pickOne.forEach(el => {
         'pick paper next!',
       ];
       if (wDL.textContent === 'you win') {
-        pauseClickAudio();
-        pauseLoseAudio();
-        pauseDrawAudio();
+        pauseAudio(audioClick);
+        pauseAudio(audioLose);
+        pauseAudio(audioDraw);
         if (+highScoreVal > +newScore) {
           audioSuccess.play();
           notification.textContent = winNotification[randomNotNum];
@@ -262,17 +249,17 @@ pickOne.forEach(el => {
         }
       }
       if (wDL.textContent === 'you lose') {
-        pauseClickAudio();
-        pauseSuccessAudio();
-        pauseDrawAudio();
+        pauseAudio(audioClick);
+        pauseAudio(audioSuccess);
+        pauseAudio(audioDraw);
         audioLose.play();
         notification.textContent = losesNotification[randomNotNum];
         popUpNotification();
       }
       if (wDL.textContent === 'draw⚒') {
-        pauseClickAudio();
-        pauseLoseAudio();
-        pauseSuccessAudio();
+        pauseAudio(audioClick);
+        pauseAudio(audioLose);
+        pauseAudio(audioSuccess);
         audioDraw.play();
         notification.textContent = drawNotification[randomNotNum];
         popUpNotification();
@@ -282,11 +269,11 @@ pickOne.forEach(el => {
 });
 
 playAgain.addEventListener('click', function () {
-  pauseClickAudio();
-  pauseLoseAudio();
-  pauseDrawAudio();
-  pauseSuccessAudio();
-  pauseNewHighScoreAudio();
+  pauseAudio(audioClick);
+  pauseAudio(audioLose);
+  pauseAudio(audioDraw);
+  pauseAudio(audioSuccess);
+  pauseAudio(newHighScoreAudio);
   results.classList.add('add-margin');
   rpsContainerPick.classList.remove('hidden');
   rpsContainerPicked.classList.add('hidden');
